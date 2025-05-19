@@ -2,7 +2,6 @@ library(shiny)
 library(webshot2)
 
 # Set the Chrome path explicitly
-
 chrome_path <- "/usr/bin/google-chrome"
 if(file.exists(chrome_path)) {
   Sys.setenv(CHROMOTE_CHROME = chrome_path)
@@ -13,14 +12,6 @@ if(file.exists(chrome_path)) {
 
 # Add Chrome flags needed for containerized environments
 Sys.setenv(CHROMOTE_CHROME_ARGS = "--no-sandbox,--headless,--disable-gpu,--disable-dev-shm-usage")
-
-# Initialize browser
-tryCatch({
-  chrome <- webshot2:::find_chrome()
-  message("Chrome found at: ", chrome)
-}, error = function(e) {
-  message("Error finding Chrome: ", e$message)
-})
 
 ui <- fluidPage(
   titlePanel("Website Screenshot Tool"),
