@@ -3,21 +3,12 @@ library(webshot2)
 
 # Set the Chrome path explicitly
 
-chrome_path <- "/opt/google/chrome/google-chrome"
+chrome_path <- "/usr/bin/google-chrome"
 if(file.exists(chrome_path)) {
   Sys.setenv(CHROMOTE_CHROME = chrome_path)
   message("Chrome path set to: ", chrome_path)
 } else {
   message("Warning: Chrome not found at ", chrome_path)
-  # Try alternate locations
-  alt_paths <- c("/opt/google/chrome/cron/google-chrome")
-  for(path in alt_paths) {
-    if(file.exists(path)) {
-      Sys.setenv(CHROMOTE_CHROME = path)
-      message("Chrome path set to: ", path)
-      break
-    }
-  }
 }
 
 # Add Chrome flags needed for containerized environments
